@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V2</title>
+	<title>Enrollment System</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -28,11 +28,11 @@
 <!--===============================================================================================-->
 </head>
 <body>
-	
+	<?php include("process/process.php")?>
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form"  id="frmLogin">
 					<span class="login100-form-title p-b-26">
 						Welcome
 					</span>
@@ -40,9 +40,9 @@
 						<i class="zmdi zmdi-font"></i>
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-						<input class="input100" type="text" name="email">
-						<span class="focus-input100" data-placeholder="Email"></span>
+					<div class="wrap-input100 validate-input" data-validate = "Invalid Input">
+						<input class="input100" type="text" name="username">
+						<span class="focus-input100" data-placeholder="Username"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
@@ -55,8 +55,8 @@
 
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">
+							<div class="login100-form-bgbtn" ></div>
+							<button class="login100-form-btn" name="login">
 								Login
 							</button>
 						</div>
@@ -67,7 +67,7 @@
 							Don’t have an account?
 						</span>
 
-						<a class="txt2" href="#">
+						<a class="txt2" href="signup.php">
 							Sign Up
 						</a>
 					</div>
@@ -96,5 +96,27 @@
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 
+	<script>
+		$( document ).ready(function() {
+			$("#frmLogin").submit(function(event) {
+				var username = $('input[name=username]').val();
+				var password = $('input[name=pass]').val();
+				var ajaxRequest;
+				event.preventDefault();
+				
+				$.ajax({
+				url: "process/process.php",
+				type: "post",
+				data: {"username": username ,"password": password,"login":true} ,
+				success: function (result) {
+					console.log(result);
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+				console.log(textStatus, errorThrown);
+				}
+			});
+		});
+		});
+	</script>
 </body>
 </html>
