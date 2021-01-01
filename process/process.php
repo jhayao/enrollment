@@ -29,7 +29,7 @@
         $result = $con->query($query);
         if($result)
         {
-            echo "succes";
+            echo "success";
         }
         else
         {
