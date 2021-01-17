@@ -24,8 +24,10 @@
     }
     if (isset($_POST["signup"])) {
         $username = $_POST["username"];
+        $name = $_POST["name"];
+        $position = $_POST["position"];
         $pass = md5($_POST["password"]);
-        $query = "insert into user values(null,'$username','$pass')";
+        $query = "insert into user values(null,'$username','$pass','$name','$position')";
         $result = $con->query($query);
         if($result)
         {

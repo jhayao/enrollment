@@ -44,7 +44,7 @@
                                
                                 <li class="app-sidebar__heading">Students</li>
                                 <li>
-                                    <a href="dashboard-boxes.html">
+                                    <a href="view_student.php">
                                         <i class="metismenu-icon pe-7s-display2"></i>
                                         View Students
                                     </a>

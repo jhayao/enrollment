@@ -14,6 +14,10 @@
 						<i class="zmdi zmdi-font"></i>
 					</span>
 
+					<div class="wrap-input100 validate-input" data-validate = "Invalid Name">
+						<input class="input100" type="text" name="name">
+						<span class="focus-input100" data-placeholder="Full Name"></span>
+					</div>
 					<div class="wrap-input100 validate-input" data-validate = "Invalid username">
 						<input class="input100" type="text" name="username">
 						<span class="focus-input100" data-placeholder="Username"></span>
@@ -26,7 +30,13 @@
 						<input class="input100" type="password" name="pass">
 						<span class="focus-input100" data-placeholder="Password"></span>
 					</div>
-
+					<div class="wrap-input100 validate-input" data-validate = "Invalid username">
+					<select class="form-control" id="positon">
+						<option value="Admin">Admin</option>
+						<option value="Student">Student</option>
+					</select>
+						<!-- <span class="focus-input100" data-placeholder="Username"></span> -->
+					</div>
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
@@ -56,15 +66,17 @@
     <script>
 		$( document ).ready(function() {
 			$("#frmLogin").submit(function(event) {
+				var name = $('input[name=name]').val();
 				var username = $('input[name=username]').val();
 				var password = $('input[name=pass]').val();
+				var position = $( "#positon option:selected" ).text();
 				var ajaxRequest;
 				event.preventDefault();
 				
 				$.ajax({
 				url: "process/process.php",
 				type: "post",
-				data: {"username": username ,"password": password,"signup":true} ,
+				data: {"username": username ,"name": name ,"position": position ,"password": password,"signup":true} ,
 				success: function (result) {
 					if(result=="success"){
 						Swal.fire({
